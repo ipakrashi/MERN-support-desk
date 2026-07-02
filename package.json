@@ -1,0 +1,24 @@
+{
+    "name": "support-desk",
+    "version": "1.0.0",
+    "description": "Support Ticket App",
+    "main": "server.js.js",
+    "scripts": {
+        "start": "node backend/server.js",
+        "server": "nodemon backend/server.js"
+    },
+    "keywords": [],
+    "author": "Brad Traversy",
+    "license": "ISC",
+    "type": "commonjs",
+    "dependencies": {
+        "bcryptjs": "^3.0.3",
+        "colors": "^1.4.0",
+        "dotenv": "^17.4.2",
+        "express": "^5.2.1",
+        "mongoose": "^9.7.3"
+    },
+    "devDependencies": {
+        "nodemon": "^3.1.14"
+    }
+}
