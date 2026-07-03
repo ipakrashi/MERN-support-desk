@@ -6,6 +6,7 @@ const router = require('./routes/userRoutes')
 const { errorHandler } = require('./middleware/errorMiddleware')
 const connectDB = require('./config/db')
 const dotenv = require('dotenv').config()
+const cors = require('cors')
 const app = express()
 const PORT = process.env.PORT || 8000
 
@@ -15,7 +16,7 @@ connectDB()
 // Middleware
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
-
+app.use(cors())
 // Routes
 app.use('/api/users', router)
 
