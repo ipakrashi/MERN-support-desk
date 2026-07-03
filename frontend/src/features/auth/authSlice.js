@@ -1,6 +1,12 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
-const initialState = {}
+const initialState = {
+    user: null,
+    isError: false,
+    isLoading: false,
+    isSuccess: false,
+    message: '',
+}
 
 export const authSlice = createSlice({
     name: 'auth',
@@ -9,5 +15,5 @@ export const authSlice = createSlice({
     extraReducers: (builder) => {},
 })
 
-export const {} = authSlice.actions
+// export const {} = authSlice.actions
 export default authSlice.reducer
