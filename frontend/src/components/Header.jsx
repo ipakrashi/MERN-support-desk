@@ -1,7 +1,7 @@
 import React from 'react'
 import { FaSignInAlt, FaSignOutAlt, FaUser } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
-import logo from '../../public/helpdesk.png'
+import logo from '/helpdesk.png'
 function Header() {
     return (
         <header className='header'>
