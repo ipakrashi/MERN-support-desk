@@ -3,6 +3,7 @@ dns.setServers(['8.8.8.8', '8.8.4.4'])
 const express = require('express')
 const colors = require('colors')
 const router = require('./routes/userRoutes')
+const ticketrouter = require('./routes/ticketRoutes')
 const { errorHandler } = require('./middleware/errorMiddleware')
 const connectDB = require('./config/db')
 const dotenv = require('dotenv').config()
@@ -19,6 +20,7 @@ app.use(express.json())
 app.use(cors())
 // Routes
 app.use('/api/users', router)
+app.use('/api/tickets', ticketrouter)
 
 app.use(errorHandler)
 
