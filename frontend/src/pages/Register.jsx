@@ -25,12 +25,12 @@ function Register() {
             toast.error(message)
         }
 
-        // REDIRECT IF USER IS LOGGED IN AND SUCCESS
-        if (isSuccess || user) {
+        // ONLY redirect if the registration action was successful
+        if (isSuccess) {
             navigate('/')
         }
 
-        // RESETTING THE FORM
+        // RESETTING THE FORM STATE
         if (isError || isSuccess) {
             dispatch(reset())
         }
