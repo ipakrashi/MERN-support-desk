@@ -37,7 +37,7 @@ function NewTicket() {
                         value={email}
                     />
                 </div>
-                <form>
+                <form onSubmit={onSubmit}>
                     <div className='form-group'>
                         <label htmlFor='product'>Product</label>
                         <select
