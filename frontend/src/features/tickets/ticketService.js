@@ -35,9 +35,25 @@ const getTicketService = async (ticketId, token) => {
     return response.data
 }
 
+// CLOSE A PARTICULAR TICKET (CHANGE THE STATUS TO 'CLOSED')
+const closeTicketService = async (ticketId, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    }
+    const response = await axios.put(
+        API_URL + ticketId,
+        { status: 'closed' },
+        config,
+    )
+    return response.data
+}
+
 const ticketService = {
     createTicketService,
     getTicketsService,
     getTicketService,
+    closeTicketService,
 }
 export default ticketService
