@@ -1,19 +1,46 @@
-import { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { createTicket, reset } from '../features/tickets/ticketSlice'
+import { toast } from 'react-toastify'
+import Spinner from '../components/Spinner'
+import BackButton from '../components/BackButton'
 
 function NewTicket() {
     const { user } = useSelector((state) => state.authR)
+    const { isLoading, isError, isSuccess, message } = useSelector(
+        (state) => state.ticketR,
+    )
     const [name] = useState(user.name)
     const [email] = useState(user.email)
     const [product, setProducts] = useState('iphone')
     const [description, setDescription] = useState('')
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        if (isError) {
+            toast.error(message)
+        }
+        if (isSuccess) {
+            dispatch(reset())
+            navigate('/tickets')
+        }
+        dispatch(reset)
+    }, [dispatch, isError, navigate, message, isSuccess])
+
+    if (isLoading) {
+        return <Spinner />
+    }
 
     const onSubmit = (e) => {
         e.preventDefault()
+        dispatch(createTicket({ product, description }))
     }
 
     return (
         <>
+            <BackButton url='/' />
             <section className='heading'>
                 <h1>Create New Ticket</h1>
                 <p>Please fill out the form below</p>
