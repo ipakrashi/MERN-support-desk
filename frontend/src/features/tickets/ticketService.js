@@ -24,5 +24,20 @@ const getTicketsService = async (token) => {
     return response.data
 }
 
-const ticketService = { createTicketService, getTicketsService }
+// GET A PARTICULAR TICKET
+const getTicketService = async (ticketId, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    }
+    const response = await axios.get(API_URL + ticketId, config)
+    return response.data
+}
+
+const ticketService = {
+    createTicketService,
+    getTicketsService,
+    getTicketService,
+}
 export default ticketService
