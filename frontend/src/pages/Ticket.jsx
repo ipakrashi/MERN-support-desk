@@ -5,7 +5,11 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import Spinner from '../components/Spinner'
-import { getNotes, reset as noteReset } from '../features/notes/noteSlice'
+import {
+    getNotes,
+    reset as noteReset,
+    createNote,
+} from '../features/notes/noteSlice'
 import NoteItem from '../components/NoteItem'
 import Modal from 'react-modal'
 import { FaPlus, FaWindowClose } from 'react-icons/fa'
@@ -72,7 +76,7 @@ function Ticket() {
     }
 
     const onNoteSubmit = () => {
-        console.log('submit clicked')
+        dispatch(createNote({ noteText, ticketId }))
         closeModal()
     }
 
