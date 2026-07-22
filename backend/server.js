@@ -10,6 +10,7 @@ const dotenv = require('dotenv').config()
 const cors = require('cors')
 const app = express()
 const PORT = process.env.PORT || 8000
+const path = require('path')
 
 // Connect To The Database
 connectDB()
@@ -21,7 +22,18 @@ app.use(cors())
 // Routes
 app.use('/api/users', router)
 app.use('/api/tickets', ticketrouter)
+if (process.env.NODE_ENV === 'production') {
+  // Set build folder as static
+  app.use(express.static(path.join(__dirname, '../frontend/dist')))
 
+  app.get('*', (req, res) => {
+    res.sendFile(
+      path.resolve(__dirname, '../', 'frontend', 'dist', 'index.html')
+    )
+  })
+} else {
+  app.get('/', (req, res) => res.status(200).json({ message: 'Welcome to Support Desk API' }))
+}
 app.use(errorHandler)
 
 // Server Start
